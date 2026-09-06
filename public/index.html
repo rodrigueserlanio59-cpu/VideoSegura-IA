@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -63,8 +64,7 @@
     </header>
 
 
-    <!-- GERADOR -->
-
+    <!-- GERADOR DE CONTEÚDO -->
     <section class="card">
 
       <h2>🚀 Gerador de conteúdo</h2>
@@ -76,7 +76,6 @@
         id="produto"
         placeholder="Ex.: Fone Bluetooth"
       >
-
 
       <label>Categoria</label>
 
@@ -93,7 +92,6 @@
 
       </select>
 
-
       <label>Plataforma</label>
 
       <select id="plataforma">
@@ -105,7 +103,6 @@
 
       </select>
 
-
       <label>Objetivo</label>
 
       <select id="objetivo">
@@ -116,7 +113,6 @@
 
       </select>
 
-
       <button class="gerar" onclick="gerarConteudo()">
         ✨ GERAR CONTEÚDO
       </button>
@@ -124,8 +120,80 @@
     </section>
 
 
-    <!-- RESULTADO -->
+    <!-- NOVO: GERADOR DE VÍDEO -->
+    <section class="card">
 
+      <h2>🎬 Criador de vídeo para anúncio</h2>
+
+      <p>
+        Envie uma foto do produto e transforme-a em um anúncio vertical.
+      </p>
+
+      <label>📸 Foto do produto</label>
+
+      <input
+        type="file"
+        id="fotoProduto"
+        accept="image/*"
+        onchange="mostrarFotoProduto(event)"
+      >
+
+      <div id="previewProduto" style="display:none; margin-top:15px;">
+
+        <img
+          id="imagemPreview"
+          alt="Prévia do produto"
+          style="width:100%; max-height:350px; object-fit:contain; border-radius:12px;"
+        >
+
+      </div>
+
+      <label>💰 Preço</label>
+
+      <input
+        type="text"
+        id="precoProduto"
+        placeholder="Ex.: R$ 49,90"
+      >
+
+      <label>📝 Texto principal do anúncio</label>
+
+      <textarea
+        id="textoAnuncio"
+        placeholder="Ex.: Aproveite essa oferta por tempo limitado!"
+      ></textarea>
+
+      <label>⏱️ Duração</label>
+
+      <select id="duracaoVideo">
+
+        <option value="10">10 segundos</option>
+        <option value="15">15 segundos</option>
+        <option value="20">20 segundos</option>
+        <option value="30">30 segundos</option>
+
+      </select>
+
+      <button class="gerar" onclick="criarVideoAnuncio()">
+        🎬 CRIAR VÍDEO DO ANÚNCIO
+      </button>
+
+      <div
+        id="statusVideo"
+        style="margin-top:15px; display:none;"
+      ></div>
+
+      <video
+        id="videoResultado"
+        controls
+        playsinline
+        style="display:none; width:100%; margin-top:20px; border-radius:12px;"
+      ></video>
+
+    </section>
+
+
+    <!-- RESULTADO -->
     <section id="resultado" class="card resultado" style="display:none;">
 
       <div class="resultado-topo">
@@ -138,7 +206,6 @@
 
       </div>
 
-
       <div class="bloco">
 
         <h3>🎬 Roteiro</h3>
@@ -146,7 +213,6 @@
         <pre id="roteiro"></pre>
 
       </div>
-
 
       <div class="bloco">
 
@@ -156,7 +222,6 @@
 
       </div>
 
-
       <div class="bloco">
 
         <h3>💬 Legenda</h3>
@@ -165,7 +230,6 @@
 
       </div>
 
-
       <div class="bloco">
 
         <h3>🏷️ Tags</h3>
@@ -173,7 +237,6 @@
         <div id="tags"></div>
 
       </div>
-
 
       <div class="seguranca">
 
@@ -189,7 +252,6 @@
 
 
     <!-- VERIFICADOR -->
-
     <section class="card">
 
       <h2>🛡️ Verificador de risco</h2>
@@ -213,7 +275,6 @@
 
 
     <!-- MODELOS -->
-
     <section class="card">
 
       <h2>📚 Modelos rápidos</h2>
@@ -251,11 +312,8 @@
   </main>
 
 
-  <sc<script src="public/public/app.js"></script>
-
-</body>
-</html>
-  <script src="public/public/app.js"></script>
+  <!-- JAVASCRIPT -->
+  <script src="public/app.js"></script>
 
 </body>
 </html>
