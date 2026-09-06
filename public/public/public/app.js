@@ -584,7 +584,15 @@ async function criarVideoAnuncio() {
 
     const ctx =
       canvas.getContext("2d");
+// Áudio da narração
+const audioContext =
+  new AudioContext();
 
+const destinoAudio =
+  audioContext.createMediaStreamDestination();
+
+let audioStream =
+  destinoAudio.stream;
     const stream =
       canvas.captureStream(30);
 
@@ -953,4 +961,59 @@ function adicionarBotaoDownload(
       botao
     );
 
+}
+// GRAVADOR DE ÁUDIO E VÍDEO
+let mediaRecorder;
+let recordedChunks = [];
+
+async function iniciarGravacao() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true
+    });
+
+    recordedChunks = [];
+
+    mediaRecorder = new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = function (event) {
+      if (event.data.size > 0) {
+        recordedChunks.push(event.data);
+      }
+    };
+
+    mediaRecorder.onstop = function () {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm"
+      });
+
+      const videoUrl = URL.createObjectURL(blob);
+
+      const botao = document.createElement("a");
+      botao.id = "botaoDownloadVideo";
+      botao.href = videoUrl;
+      botao.download = "anuncio-videosegura.webm";
+      botao.textContent = "⬇️ Baixar gravação";
+
+      document.body.appendChild(botao);
+
+      stream.getTracks().forEach(track => track.stop());
+    };
+
+    mediaRecorder.start();
+
+    console.log("🔴 Gravação iniciada");
+
+  } catch (erro) {
+    console.error("Erro ao iniciar gravação:", erro);
+    alert("Não foi possível acessar a câmera e o microfone.");
+  }
+}
+
+function pararGravacao() {
+  if (mediaRecorder && mediaRecorder.state !== "inactive") {
+    mediaRecorder.stop();
+    console.log("⏹️ Gravação finalizada");
+  }
 }
