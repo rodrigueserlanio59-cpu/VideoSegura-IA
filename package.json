@@ -1,3 +1,4 @@
+
 {
   "name": "videosegura-ia",
   "version": "1.0.0",
@@ -8,6 +9,7 @@
   },
   "dependencies": {
     "express": "^4.21.2",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "fluent-ffmpeg": "^2.1.3"
   }
 }
