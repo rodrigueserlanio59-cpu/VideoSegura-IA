@@ -1,0 +1,13 @@
+{
+  "name": "videosegura-ia",
+  "version": "1.0.0",
+  "description": "IA exclusiva para criação segura de conteúdo para vídeos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "dotenv": "^16.4.7"
+  }
+}
