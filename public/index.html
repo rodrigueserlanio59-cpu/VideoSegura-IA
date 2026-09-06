@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VideoSegura IA</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <section id="loginTela" class="login-container">
+
+    <div class="login-card">
+
+      <div class="logo">🎬</div>
+
+      <h1>VideoSegura IA</h1>
+
+      <p class="subtitulo">
+        Sua IA pessoal para criação de conteúdo
+      </p>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Digite seu e-mail"
+        autocomplete="email"
+      >
+
+      <button onclick="entrar()">
+        🔐 Entrar
+      </button>
+
+      <p id="loginMensagem" class="mensagem"></p>
+
+      <small>
+        Acesso exclusivo do proprietário
+      </small>
+
+    </div>
+
+  </section>
+
+
+  <!-- APLICATIVO -->
+  <main id="app" class="app-container" style="display:none;">
+
+    <header>
+
+      <div>
+        <h1>🎬 VideoSegura IA</h1>
+        <p>Crie seu conteúdo em poucos segundos</p>
+      </div>
+
+      <button class="sair" onclick="sair()">
+        Sair
+      </button>
+
+    </header>
+
+
+    <!-- GERADOR -->
+
+    <section class="card">
+
+      <h2>🚀 Gerador de conteúdo</h2>
+
+      <label>Produto</label>
+
+      <input
+        type="text"
+        id="produto"
+        placeholder="Ex.: Fone Bluetooth"
+      >
+
+
+      <label>Categoria</label>
+
+      <select id="categoria">
+
+        <option value="casa">🏠 Casa</option>
+        <option value="beleza">💄 Beleza</option>
+        <option value="eletronicos">📱 Eletrônicos</option>
+        <option value="moda">👕 Moda</option>
+        <option value="pets">🐶 Pets</option>
+        <option value="cozinha">🍳 Cozinha</option>
+        <option value="fitness">🏋️ Fitness</option>
+        <option value="geral">🛍️ Geral</option>
+
+      </select>
+
+
+      <label>Plataforma</label>
+
+      <select id="plataforma">
+
+        <option>TikTok</option>
+        <option>Instagram Reels</option>
+        <option>Shopee</option>
+        <option>Mercado Livre</option>
+
+      </select>
+
+
+      <label>Objetivo</label>
+
+      <select id="objetivo">
+
+        <option value="vendas">🛒 Vendas</option>
+        <option value="apresentacao">📢 Apresentação</option>
+        <option value="engajamento">❤️ Engajamento</option>
+
+      </select>
+
+
+      <button class="gerar" onclick="gerarConteudo()">
+        ✨ GERAR CONTEÚDO
+      </button>
+
+    </section>
+
+
+    <!-- RESULTADO -->
+
+    <section id="resultado" class="card resultado" style="display:none;">
+
+      <div class="resultado-topo">
+
+        <h2>📋 Seu conteúdo está pronto</h2>
+
+        <button onclick="copiarTudo()">
+          📋 Copiar tudo
+        </button>
+
+      </div>
+
+
+      <div class="bloco">
+
+        <h3>🎬 Roteiro</h3>
+
+        <pre id="roteiro"></pre>
+
+      </div>
+
+
+      <div class="bloco">
+
+        <h3>📝 Título</h3>
+
+        <div id="titulo"></div>
+
+      </div>
+
+
+      <div class="bloco">
+
+        <h3>💬 Legenda</h3>
+
+        <div id="legenda"></div>
+
+      </div>
+
+
+      <div class="bloco">
+
+        <h3>🏷️ Tags</h3>
+
+        <div id="tags"></div>
+
+      </div>
+
+
+      <div class="seguranca">
+
+        <h3>🛡️ Verificação de segurança</h3>
+
+        <div id="statusSeguranca">
+          Aguardando análise...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VERIFICADOR -->
+
+    <section class="card">
+
+      <h2>🛡️ Verificador de risco</h2>
+
+      <p>
+        Cole aqui um texto antes de publicar.
+      </p>
+
+      <textarea
+        id="textoVerificar"
+        placeholder="Cole seu roteiro, legenda ou anúncio aqui..."
+      ></textarea>
+
+      <button onclick="verificarTexto()">
+        🔎 VERIFICAR TEXTO
+      </button>
+
+      <div id="resultadoVerificacao"></div>
+
+    </section>
+
+
+    <!-- MODELOS -->
+
+    <section class="card">
+
+      <h2>📚 Modelos rápidos</h2>
+
+      <div class="modelos">
+
+        <button onclick="modelo('Casa')">
+          🏠 Casa
+        </button>
+
+        <button onclick="modelo('Beleza')">
+          💄 Beleza
+        </button>
+
+        <button onclick="modelo('Eletrônicos')">
+          📱 Eletrônicos
+        </button>
+
+        <button onclick="modelo('Moda')">
+          👕 Moda
+        </button>
+
+        <button onclick="modelo('Pets')">
+          🐶 Pets
+        </button>
+
+        <button onclick="modelo('Cozinha')">
+          🍳 Cozinha
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
