@@ -3,6 +3,7 @@ const path = require("path");
 require("dotenv").config();
 
 const app = express();
+const gTTS = require("google-tts-api");
 const PORT = process.env.PORT || 3000;
 
 // Configurações
