@@ -1,0 +1,316 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* LOGIN */
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #1e293b;
+  padding: 35px 25px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.login-card h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  color: #94a3b8;
+  margin-bottom: 25px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #475569;
+  border-radius: 12px;
+  background: #0f172a;
+  color: white;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+}
+
+.login-card small {
+  display: block;
+  color: #64748b;
+  margin-top: 20px;
+}
+
+.mensagem {
+  margin-top: 15px;
+  min-height: 20px;
+}
+
+
+/* APLICATIVO */
+
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  font-size: 28px;
+}
+
+header p {
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+.sair {
+  background: #334155;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+
+/* CARDS */
+
+.card {
+  background: #1e293b;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  margin-bottom: 20px;
+}
+
+.card label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #cbd5e1;
+  font-weight: bold;
+}
+
+.card input,
+.card select,
+.card textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: white;
+  outline: none;
+}
+
+.card textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.card > button,
+.gerar {
+  width: 100%;
+  margin-top: 18px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+}
+
+.gerar {
+  font-size: 17px;
+}
+
+
+/* RESULTADO */
+
+.resultado-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.resultado-topo button {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #16a34a;
+  color: white;
+  font-weight: bold;
+}
+
+.bloco {
+  background: #0f172a;
+  border: 1px solid #334155;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.bloco h3 {
+  margin-bottom: 12px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #cbd5e1;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.seguranca {
+  padding: 18px;
+  border-radius: 12px;
+  background: #172554;
+}
+
+.seguranca h3 {
+  margin-bottom: 10px;
+}
+
+
+/* MODELOS */
+
+.modelos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.modelos button {
+  padding: 14px 8px;
+  border: 1px solid #475569;
+  border-radius: 10px;
+  background: #0f172a;
+  color: white;
+}
+
+.modelos button:hover {
+  background: #334155;
+}
+
+
+/* VERIFICAÇÃO */
+
+#resultadoVerificacao {
+  margin-top: 15px;
+}
+
+.alerta {
+  padding: 15px;
+  border-radius: 12px;
+  line-height: 1.5;
+}
+
+.baixo {
+  background: #14532d;
+}
+
+.atencao {
+  background: #713f12;
+}
+
+.alto {
+  background: #7f1d1d;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+  .app-container {
+    padding: 14px;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  header p {
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 17px;
+  }
+
+  .resultado-topo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .resultado-topo button {
+    width: 100%;
+  }
+
+  .modelos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
