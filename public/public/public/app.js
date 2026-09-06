@@ -4,13 +4,17 @@ let ultimoConteudo = "";
 
 // LOGIN
 async function entrar() {
-  const email = document.getElementById("email").value.trim().toLowerCase();
+  const emailInput = document.getElementById("email");
   const mensagem = document.getElementById("loginMensagem");
+
+  const email = emailInput.value.trim().toLowerCase();
 
   if (!email) {
     mensagem.textContent = "Digite seu e-mail.";
     return;
   }
+
+  mensagem.textContent = "⏳ Verificando acesso...";
 
   try {
     const resposta = await fetch("/api/login", {
@@ -18,12 +22,12 @@ async function entrar() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email: email })
     });
 
     const dados = await resposta.json();
 
-    if (dados.autorizado) {
+    if (resposta.ok && dados.autorizado === true) {
       localStorage.setItem("videoSeguraLogin", email);
 
       document.getElementById("loginTela").style.display = "none";
@@ -31,18 +35,20 @@ async function entrar() {
 
       mensagem.textContent = "";
     } else {
-      mensagem.textContent = "❌ " + dados.mensagem;
+      mensagem.textContent =
+        "❌ " + (dados.mensagem || "Acesso não autorizado.");
     }
 
   } catch (erro) {
+    console.error(erro);
     mensagem.textContent =
-      "Não foi possível conectar ao servidor.";
+      "❌ Não foi possível conectar ao servidor.";
   }
 }
 
 
 // VERIFICAR LOGIN AO ABRIR
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", function () {
 
   const emailSalvo = localStorage.getItem("videoSeguraLogin");
 
@@ -108,33 +114,23 @@ async function gerarConteudo() {
 
     document.getElementById("resultado").style.display = "block";
 
-    document.getElementById("roteiro").textContent =
-      dados.roteiro;
-
-    document.getElementById("titulo").textContent =
-      dados.titulo;
-
-    document.getElementById("legenda").textContent =
-      dados.legenda;
-
-    document.getElementById("tags").textContent =
-      dados.tags;
+    document.getElementById("roteiro").textContent = dados.roteiro;
+    document.getElementById("titulo").textContent = dados.titulo;
+    document.getElementById("legenda").textContent = dados.legenda;
+    document.getElementById("tags").textContent = dados.tags;
 
     ultimoConteudo = dados.textoCompleto;
 
     await analisarGerado(dados.textoCompleto);
 
-    document
-      .getElementById("resultado")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+    document.getElementById("resultado").scrollIntoView({
+      behavior: "smooth"
+    });
 
   } catch (erro) {
 
-    alert(
-      "Erro ao gerar conteúdo. Verifique se o servidor está online."
-    );
+    console.error(erro);
+    alert("Erro ao gerar conteúdo.");
 
   } finally {
 
@@ -155,15 +151,12 @@ async function analisarGerado(texto) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        texto
-      })
+      body: JSON.stringify({ texto: texto })
     });
 
     const dados = await resposta.json();
 
-    const area =
-      document.getElementById("statusSeguranca");
+    const area = document.getElementById("statusSeguranca");
 
     if (dados.nivel === "baixo") {
 
@@ -190,6 +183,8 @@ async function analisarGerado(texto) {
     }
 
   } catch (erro) {
+
+    console.error(erro);
 
     document.getElementById("statusSeguranca").textContent =
       "Não foi possível realizar a análise.";
@@ -223,7 +218,7 @@ async function verificarTexto() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ texto })
+      body: JSON.stringify({ texto: texto })
     });
 
     const dados = await resposta.json();
@@ -244,23 +239,24 @@ async function verificarTexto() {
     let detalhes = "";
 
     if (dados.encontrados.length > 0) {
-
       detalhes =
-        `<br><br><strong>Expressões para revisar:</strong><br>` +
+        "<br><br><strong>Expressões para revisar:</strong><br>" +
         dados.encontrados.join(", ");
-
     }
 
-    resultado.innerHTML = `
-      <div class="alerta ${classe}">
-        ${emoji} <strong>Nível: ${dados.nivel.toUpperCase()}</strong>
-        <br>
-        ${dados.mensagem}
-        ${detalhes}
-      </div>
-    `;
+    resultado.innerHTML =
+      '<div class="alerta ' + classe + '">' +
+      emoji +
+      " <strong>Nível: " +
+      dados.nivel.toUpperCase() +
+      "</strong><br>" +
+      dados.mensagem +
+      detalhes +
+      "</div>";
 
   } catch (erro) {
+
+    console.error(erro);
 
     resultado.innerHTML =
       '<div class="alerta alto">Erro ao analisar o texto.</div>';
