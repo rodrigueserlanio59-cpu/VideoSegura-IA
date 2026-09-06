@@ -159,7 +159,37 @@ function limparTag(texto) {
     .replace(/[^a-zA-Z0-9]/g, "")
     .toLowerCase();
 }
+// Gerar narração em português
+app.post("/api/narracao", async (req, res) => {
+  try {
+    const texto = String(req.body.texto || "").trim();
 
+    if (!texto) {
+      return res.status(400).json({
+        sucesso: false,
+        mensagem: "Digite um texto para gerar a narração."
+      });
+    }
+
+    const url = gTTS.getAudioUrl(texto, {
+      lang: "pt",
+      slow: false,
+      host: "https://translate.google.com"
+    });
+
+    res.json({
+      sucesso: true,
+      audioUrl: url
+    });
+  } catch (erro) {
+    console.error("Erro ao gerar narração:", erro);
+
+    res.status(500).json({
+      sucesso: false,
+      mensagem: "Não foi possível gerar a narção."
+    });
+  }
+});
 // Rota para verificar se o servidor está funcionando
 app.get("/api/status", (req, res) => {
   res.json({
